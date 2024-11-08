@@ -7,204 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #bcebf5;
-            color: #333;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: #3a4750;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-        nav {
-            background-color: #303841;
-            padding: 0;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            padding: 10px 20px;
-            display: block;
-        }
-        nav ul li a:hover {
-            background-color: #00adb5;
-        }
-        h1, h2 {
-            color: #3a4750;
-        }
-        #videoContainer {
-            position: relative;
-            width: 100%;
-            max-width: 640px;
-            margin: 2rem auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        .heading {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 80%;
-            text-align: center;
-        }
-        .heading h1 {
-            margin: 0;
-            color: #3a4750;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-        #videoFeed {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        #overlay {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        #controls {
-            margin-top: 20px;
-            text-align: center;
-        }
-        button {
-            margin: 10px;
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #00adb5;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        button:hover {
-            background-color: #007a8a;
-            transform: translateY(-2px);
-        }
-        button:disabled {
-            background-color: #c1c1c1;
-            cursor: not-allowed;
-        }
-        #count {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        #progressBar {
-            width: 100%;
-            height: 10px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            margin-top: 15px;
-            overflow: hidden;
-        }
-        #progressFill {
-            width: 0%;
-            height: 100%;
-            background-color: #00adb5;
-            transition: width 1s linear;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        #pages > div {
-            display: none;
-        }
-        #pages > div.active {
-            display: block;
-        }
-        .hero-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-        .feature-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-        .about-image {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin: 2rem 0;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .key-advantages {
-            font-size: 1.2rem;
-        }
-        .key-advantages li {
-            list-style-type: none;
-            margin-bottom: 10px;
-        }
-        .key-advantages li:before {
-            content: "🚗 ";
-            margin-right: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
 
@@ -217,26 +20,24 @@
         </ul>
     </nav>
     <div class="heading"> <h1>RoadGuard AI: Smart Pothole Detection System</h1></div>
- 
-    
     <div class="container" id="pages">
         <div id="home" class="active">
-            <img src="{{ url_for('static', filename='1.png') }}" alt="Smart city with AI-powered road maintenance" class="hero-image">
+            <img src="{{ url_for('static', filename='images/1.png') }}" alt="Smart city with AI-powered road maintenance" class="hero-image">
             <h2 class="text-center">Welcome to RoadGuard AI</h2>
             <p class="text-center">Experience the future of road maintenance with our AI-powered pothole detection system. Identify and track road damage in real-time, ensuring safer streets for everyone.</p>
             <div class="grid">
                 <div class="card">
-                    <img src="{{ url_for('static', filename='19178.jpg') }}" alt="AI analyzing road conditions" class="feature-image">
+                    <img src="{{ url_for('static', filename='images/19178.jpg') }}" alt="AI analyzing road conditions" class="feature-image">
                     <h3>🧠 Cutting-Edge AI</h3>
                     <p>Our advanced algorithms analyze video feeds to accurately identify and track potholes, preventing double-counting and ensuring precise data collection.</p>
                 </div>
                 <div class="card">
-                    <img src="{{ url_for('static', filename='4935548.jpg') }}" alt="Real-time road condition updates" class="feature-image">
+                    <img src="{{ url_for('static', filename='images/4935548.jpg') }}" alt="Real-time road condition updates" class="feature-image">
                     <h3>⚡ Real-Time Insights</h3>
                     <p>Get instant updates on road conditions, enabling quick responses to emerging issues and more efficient allocation of maintenance resources.</p>
                 </div>
                 <div class="card">
-                    <img src="{{ url_for('static', filename='Screenshot 2024-10-05 213721.png') }}" alt="Data-driven urban planning" class="feature-image">
+                    <img src="{{ url_for('static', filename='images/Screenshot 2024-10-05 213721.png') }}" alt="Data-driven urban planning" class="feature-image">
                     <h3>📊 Data-Driven Decisions</h3>
                     <p>Leverage comprehensive statistics and trends to make informed decisions about road repairs and urban planning initiatives.</p>
                 </div>
@@ -274,12 +75,12 @@
             </div>
             <div class="grid" style="margin-top: 2rem;">
                 <div class="card">
-                    <img src="{{ url_for('static', filename='pothole.png') }}" alt="Map of pothole hotspots" class="feature-image">
+                    <img src="{{ url_for('static', filename='images/pothole.png') }}" alt="Map of pothole hotspots" class="feature-image">
                     <h3>🗺️ Pothole Hotspots</h3>
                     <p>Visualize areas with high concentrations of potholes to prioritize maintenance efforts effectively.</p>
                 </div>
                 <div class="card">
-                    <img src="{{ url_for('static', filename='historical.png') }}" alt="Historical data trends" class="feature-image">
+                    <img src="{{ url_for('static', filename='images/historical.png') }}" alt="Historical data trends" class="feature-image">
                     <h3>📊 Historical Trends</h3>
                     <p>Analyze long-term data to identify patterns and predict future road maintenance needs.</p>
                 </div>
@@ -287,7 +88,7 @@
         </div>
         <div id="about">
             <h2 class="text-center">About RoadGuard AI</h2>
-            <img src="{{ url_for('static', filename='ai.jpg') }}" alt="Team working on AI-powered road maintenance" class="about-image">
+            <img src="{{ url_for('static', filename='images/ai.jpg') }}" alt="Team working on AI-powered road maintenance" class="about-image">
             <p>Our state-of-the-art pothole detection system harnesses the power of machine learning to revolutionize road maintenance. By employing advanced computer vision techniques, we provide accurate, real-time data on road conditions, enabling smarter, more efficient urban planning and maintenance strategies.</p>
             <h3>Key Advantages:</h3>
             <ul class="key-advantages">
@@ -299,172 +100,18 @@
             <p>Join us in creating safer, smoother roads for communities everywhere. For partnerships or more information, reach out to our dedicated team of experts.</p>
             <div class="grid">
                 <div class="card">
-                    <img src="{{ url_for('static', filename='tech.jpg') }}" alt="RoadGuard AI in action" class="feature-image">
+                    <img src="{{ url_for('static', filename='images/tech.jpg') }}" alt="RoadGuard AI in action" class="feature-image">
                     <h3>💻 Our Technology</h3>
                     <p>Learn more about the cutting-edge AI and computer vision technology powering RoadGuard AI.</p>
                 </div>
                 <div class="card">
-                    <img src="{{ url_for('static', filename='hole-in-the-asphalt-road-repair-vector-43608188.jpg') }}" alt="RoadGuard AI team" class="feature-image">
+                    <img src="{{ url_for('static', filename='images/hole-in-the-asphalt-road-repair-vector-43608188.jpg') }}" alt="RoadGuard AI team" class="feature-image">
                     <h3>AI-Driven Innovation</h3>
                     <p>RoadGuard AI is at the forefront of leveraging artificial intelligence for public safety. By combining real-time detection and advanced analytics, we ensure a proactive approach to maintaining road infrastructure.</p>
                 </div>
             </div>
         </div>
     </div>
-    
-    
-
-    
-    
-    <script>
-        let intervalId;
-        let startTime;
-        const duration = 60; // Duration in seconds
-        let hourlyData = Array(24).fill(0);
-        let dailyData = Array(7).fill(0);
-
-        // Load data from local storage on page load
-        window.onload = function() {
-            loadDataFromLocalStorage();
-            updateCharts();
-        };
-
-        function loadDataFromLocalStorage() {
-            const storedHourlyData = localStorage.getItem('hourlyData');
-            const storedDailyData = localStorage.getItem('dailyData');
-
-            if (storedHourlyData) {
-                hourlyData = JSON.parse(storedHourlyData);
-            }
-            if (storedDailyData) {
-                dailyData = JSON.parse(storedDailyData);
-            }
-        }
-
-        function saveDataToLocalStorage() {
-            localStorage.setItem('hourlyData', JSON.stringify(hourlyData));
-            localStorage.setItem('dailyData', JSON.stringify(dailyData));
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('#pages > div').forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            if (pageId === 'statistics') {
-                updateCharts();
-            }
-        }
-
-        function startDetection() {
-            axios.get('/start_detection')
-                .then(response => {
-                    console.log(response.data.status);
-                    document.getElementById('overlay').textContent = 'Status: Detecting';
-                    document.getElementById('startBtn').disabled = true;
-                    document.getElementById('stopBtn').disabled = false;
-                    startTime = new Date().getTime();
-                    updateCount();
-                    intervalId = setInterval(updateCount, 1000);
-                })
-                .catch(error => console.error('Error:', error));
-        }
-        
-        function stopDetection() {
-            axios.get('/stop_detection')
-                .then(response => {
-                    console.log(response.data.status);
-                    clearInterval(intervalId);
-                    document.getElementById('overlay').textContent = 'Status: Idle';
-                    document.getElementById('startBtn').disabled = false;
-                    document.getElementById('stopBtn').disabled = true;
-                    document.getElementById('progressFill').style.width = '0%';
-                })
-                .catch(error => console.error('Error:', error));
-        }
-        
-        function updateCount() {
-            axios.get('/get_count')
-                .then(response => {
-                    const result = response.data;
-                    const countElement = document.getElementById('countText');
-                    const progressFill = document.getElementById('progressFill');
-                    
-                    if (result.time_up) {
-                        countElement.textContent = `Potholes detected in the last minute: ${result.count}`;
-                        progressFill.style.width = '100%';
-                        clearInterval(intervalId);
-                        document.getElementById('startBtn').disabled = false;
-                        document.getElementById('stopBtn').disabled = true;
-                        document.getElementById('overlay').textContent = 'Status: Completed';
-                        updateStatistics(result.count);
-                    } else {
-                        const elapsedTime = (new Date().getTime() - startTime) / 1000;
-                        const progress = (elapsedTime / duration) * 100;
-                        countElement.textContent = `Current pothole count: ${result.count}`;
-                        progressFill.style.width = `${progress}%`;
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        function updateStatistics(count) {
-            const now = new Date();
-            hourlyData[now.getHours()] += count;
-            dailyData[now.getDay()] += count;
-            saveDataToLocalStorage();
-            updateCharts();
-        }
-
-        function updateCharts() {
-            updateHourlyChart();
-            updateDailyChart();
-        }
-
-        function updateHourlyChart() {
-            const ctx = document.getElementById('hourlyChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: Array.from({length: 24}, (_, i) => `${i}:00`),
-                    datasets: [{
-                        label: 'Potholes Detected',
-                        data: hourlyData,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-
-        function updateDailyChart() {
-            const ctx = document.getElementById('dailyChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    datasets: [{
-                        label: 'Potholes Detected',
-                        data: dailyData,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-    </script>
+    <script src="/static/js/scripts.js"></script>
 </body>
 </html>
